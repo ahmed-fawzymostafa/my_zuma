@@ -1,0 +1,131 @@
+
+<html>
+
+
+
+<head>
+    <style>
+        /* html{
+            max-width: 1000px;
+            max-height: 562px;
+        } */
+        /* *{
+            margin: 0;
+            padding: 0;
+            
+            /* box-sizing: border-box; */
+        /* }  */
+        @font-face {
+            font-family: 'MyFont';
+            src: url('Normal.ttf');
+        }
+
+        @font-face {
+            font-family: 'MyFontBold';
+            src: url('Bold.ttf');
+        }
+
+        body {
+            margin: 0;
+            background-color: black;
+           
+            width: 1000px!important; 
+            height: 562px!important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            
+            
+        }
+
+        
+
+        /*
+            #start{
+                position:absolute;
+                top:200px;
+                left:700px;
+                border-radius: 25px;
+                width: 100px;
+                height: 35px;
+                font-size: 25px;
+                background-color: rgb(146,206,252);
+                color:black;
+                cursor: pointer;
+                
+            }
+            */
+    </style>
+</head>
+
+<body>
+    <canvas id="zuma" style="max-width: 1000px; max-height: 562px;"></canvas>
+    <audio src="gamemusic.wav" id="my_audio" loop="loop" autoplay="autoplay" muted="true"></audio>
+    <div id="first_question"
+        style="opacity: 0.3; width: 500px ; height: 260px; top:500px ;position: absolute;  display: none; background-image: url('./images/text box.png'); background-repeat: no-repeat; background-size: cover;">
+        <h5
+            style="font-family: MyFontBold;font-size: 23px; text-align:center; color: rgba(30, 150, 150, 1);margin-top: -4;">
+            أن يضع نفسه مكان الشخصية
+        </h5>
+        <p
+            style="text-align:center; padding: 0px 50px;margin-top: -25; color: rgba(30, 150, 150, 1); font-size: 20px; font-family: MyFont;">
+            اطلبوا من أحد أفراد الجمهور أن يصعد إلى المسرح، ويتولى دور الشخصية في المسرحية ويمثل ما يجب أن تفعله هذه
+            الشخصية في هذا الموقف۰
+        </p>
+        <!-- <button style="position: relative; top:-10; left: 210;background-image: url('./images/close.png');background-repeat: no-repeat; "></button> -->
+        <input type="image" src="./images/close.png" onclick="closeFirst()"
+            style="position: relative; top:23; left: 228;">
+    </div>
+    <div id="second_question"
+        style="opacity: 0.3; width: 500px ; height: 260px; top:500px ;position: absolute;   display: none; background-image: url('./images/text box.png'); background-repeat: no-repeat; background-size: cover;">
+        <h5
+            style="font-family: MyFontBold;font-size: 23px; text-align:center; color: rgba(30, 150, 150, 1);margin-top: -4;">
+            سؤال الشخصية
+
+        </h5>
+        <p
+            style="text-align:center; padding: 0px 50px; color: rgba(30, 150, 150, 1); font-size: 20px; font-family: MyFont; margin-top: -25;">
+            .اطلبوا من أحد أفراد الجمهور أن يسأل أحد شخصيات المسرحية سؤالاً لمعرفة سبب قيامه باتخاذ قرار ما أو القيام
+            بتصرف معين في المسرحية
+
+        </p>
+        <!-- <button style="position: relative; top:-10; left: 210;background-image: url('./images/close.png');background-repeat: no-repeat; "></button> -->
+        <input type="image" src="./images/close.png" onclick="closeSecond()"
+            style="position: relative; top:23; left: 228;">
+    </div>
+    <div id="third_question"
+        style="opacity: 0.3; width: 500px ; height: 260px; top:500px ;position: absolute;   display: none; background-image: url('./images/text box.png'); background-repeat: no-repeat; background-size: cover;">
+        <h5
+            style="font-family: MyFontBold;font-size: 23px; text-align:center; color: rgba(30, 150, 150, 1);margin-top: -4;">
+            نصح الشخصية
+
+        </h5>
+        <p
+            style="text-align:center; padding: 0px 50px; color: rgba(30, 150, 150, 1); font-size: 20px; font-family: MyFont;margin-top: -30;">
+            اطلبوا من أحد أفراد الجمهور أن يتقدم ويتحدث مباشرة مع إحدَى شخصيات المسرحية، وتوجيه النصح إليها بما يجب
+            عليها فعله للتغلب على التحدي الذي تواجهه في القصة۰
+        </p>
+        <!-- <button style="position: relative; top:-10; left: 210;background-image: url('./images/close.png');background-repeat: no-repeat; "></button> -->
+        <input type="image" src="./images/close.png" onclick="closeThird()"
+            style="position: relative; top:-16; left: 228;">
+    </div>
+    <div id="fourth_question"
+        style="opacity: 0.3; width: 500px ; height: 260px; top:500px ;position: absolute;   display: none; background-image: url('./images/text box.png'); background-repeat: no-repeat; background-size: cover;">
+        <h5 style="font-family: MyFontBold;font-size: 23px; text-align:center; color: rgba(30, 150, 150, 1);margin-top: -4;">النقاش
+        </h5>
+        <p
+            style="text-align:center; padding: 0px 50px; color: rgba(30, 150, 150, 1); font-size: 20px; font-family: MyFont;margin-top: -30;">
+            إذا كان موضوع المسرحية يثير خلافات وأوجه تعارض بين الجمهور ما بين المؤيدين والمعارضين، يمكن للميسر أن يطرح
+            أسئلة مباشرة للسماح للجمهور بمشاركة آرائهم۰
+
+        </p>
+        <!-- <button style="position: relative; top:-10; left: 210;background-image: url('./images/close.png');background-repeat: no-repeat; "></button> -->
+        <input type="image" src="./images/close.png" onclick="closeFourth()"
+            style="position: relative; top:-17; left: 228;">
+    </div>
+    <script src=lib/path.js></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</body>
+
+</html>
